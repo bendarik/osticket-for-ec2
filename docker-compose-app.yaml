@@ -1,3 +1,5 @@
+name: app
+
 services:
 
   db:
@@ -7,10 +9,10 @@ services:
       MYSQL_USER: /run/secrets/db_user_name
       MYSQL_PASSWORD: /run/secrets/db_user_pass
       MYSQL_DATABASE: /run/secrets/db_name
-    expose:
-      - 3306
     volumes:
       - ./mysql:/var/lib/mysql
+    networks:
+      - proxy_default
     secrets:
       - db_root_pass
       - db_user_name
@@ -28,25 +30,17 @@ services:
       MYSQL_USER: /run/secrets/db_user_name
       MYSQL_PASSWORD: /run/secrets/db_user_pass
       MYSQL_DATABASE: /run/secrets/db_name
-    expose:
-      - 80
+    networks:
+      - proxy_default
     secrets:
       - db_root_pass
       - db_user_name
       - db_user_pass
       - db_name
 
-  nginx:
-    image: nginx:1.27
-    depends_on:
-      - osticket
-    ports:
-      - 8080:8080
-      - 443:443
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/certs/nginx-selfsigned.crt:/etc/certs/nginx-selfsigned.crt
-      - ./nginx/certs/nginx-selfsigned.key:/etc/certs/nginx-selfsigned.key
+networks:
+  proxy_default:
+    external: true
 
 secrets:
   db_root_pass:
