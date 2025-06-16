@@ -1,2 +1,4 @@
 certbot
 mysql
+.vscode/launch.json
+.vscode/tasks.json
