@@ -50,7 +50,7 @@ resource "aws_instance" "osticket" {
   key_name        = "osticket-key" # Ensure you have created this key pair in AWS
 #   user_data       = file("scripts/install-docker-engine.sh") # Path to your user data script for initial setup
   tags = {
-    Name = "osticket_instance"
+    Name = "osticket-instance"
   }
 }
 
