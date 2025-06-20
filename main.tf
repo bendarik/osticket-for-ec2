@@ -20,3 +20,11 @@ module "aws_module" {
   domain_name             = var.domain_name
   deployer_ssh_public_key = var.deployer_ssh_public_key
 }
+
+output "aws_instance_public_ip" {
+  value = module.aws_module.aws_instance_public_ip  
+}
+
+output "aws_instance_public_dns" {
+  value = module.aws_module.aws_instance_public_dns
+}
