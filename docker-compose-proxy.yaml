@@ -24,7 +24,7 @@ services:
       - ./certbot/www:/var/www/certbot
     networks:
       - default
-    command: certonly --webroot --webroot-path=/var/www/certbot -d baobabka.com -d www.baobabka.com --email bendarik@outlook.com --agree-tos --force-renewal --test-cert
+    command: certonly --webroot --webroot-path=/var/www/certbot -d ${DOMAIN_NAME} -d www.${DOMAIN_NAME} --email ${EMAIL} --agree-tos --force-renewal --test-cert
 
 networks:
   default:
